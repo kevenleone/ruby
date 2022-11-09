@@ -1,10 +1,14 @@
-class User
-    attr_accessor :active, :email, :name
+class Person
+    attr_accessor :email, :name
 
-    def initialize(active, email, name)
-        @active = active #self.active works too
+    def initialize(email, name)
+        @id = rand 100000000
         @email = email
         @name = name
+    end
+
+    def get_id
+        @id
     end
 
     def get_name
@@ -16,16 +20,29 @@ class User
     end
 end
 
-user = User.new(
-    true, 
+class Student < Person
+    def get_id
+        "student: " + @id.to_s
+    end
+end
+
+class Professor < Person
+    def get_id
+        "professor: " + @id.to_s
+    end
+end
+
+student = Student.new(
     "keven.santos.sz@gmail.com", 
     "Keven Leone"
 )
 
-# user.active = true
-# user.email = "keven.santos.sz@gmail.com"
-# user.name = "Keven Leone"
+professor = Professor.new(
+    "debora@email.com", 
+    "Debora Thaise"
+)
 
-# user.set_name("Keven Leone")
-
-puts user.get_name
+puts student.get_name
+puts student.get_id
+puts professor.get_name
+puts professor.get_id
